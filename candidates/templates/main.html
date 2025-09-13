@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Political Candidates</title>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap" rel="stylesheet">
+    
+    <style>
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Special Elite', monospace;
+            margin: 40px;
+            background-color: #f4f4f9;
+           
+        }
+
+        .line {
+            display: inline-block;
+            width: 250px;      /* length of the line */
+            height: 4px;      /* thickness of the line */
+            background: #fff; /* color of the line */
+            border-radius: 2px;
+        }
+
+        .line-container {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+}
+
+        .hover-box {
+           display: none;
+           position: absolute;
+           top: 110%; /* just below the line */
+           left: 50%;
+           transform: translateX(-50%);
+           min-width: 225px;
+           padding: 12px;
+           color: #ffffff;
+           border: 2px solid #888;
+           border-radius: 8px;
+           box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+           z-index: 10;
+           text-decoration: none;
+           text-align: center;
+}
+
+        .line-container:hover .hover-box {
+          display: block;
+}
+
+        .main {
+          width: 100%;
+          max-width: 1400px;
+          height: auto;
+          margin-left: 0;    /* aligns to the left */
+          margin-right: auto;
+          border: 1px solid #ccc;
+          padding: 20px;
+        }
+
+        .rectangle {
+          width: 60%;
+          min-width: 320px;
+          max-width: 800px;
+          height: 600px;
+          background: #f6eee3;
+          margin: 0;
+          padding: 24px;
+        }
+
+        .side-container {
+          width: 550px;
+         
+          background: #fff;
+          border: 2px solid #ccc;
+          border-radius: 8px;
+          margin-left: auto;
+          padding: 16px;
+    }
+
+
+        header {
+          background-color: #000000;
+          color: #fff;
+          padding: 20px 40px;
+          margin: -40px -40px 40px -40px;
+          box-shadow: 0 2px 8px rgba(44,62,80,0.08);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 24px; /* space between line and text */
+          }
+       .header-line {
+          display: inline-block;
+          width: 40px;      /* length of the line */
+          height: 4px;      /* thickness of the line */
+          background: #fff; /* color of the line */
+          border-radius: 2px;
+          }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            letter-spacing: 2px;
+            text-align: center;
+            display: inline-block;  
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #000000;
+        }
+         
+        h3 {
+            margin-top: 15px;
+            color: #000000;
+        }
+
+        p {
+            margin-top: 10px;
+            color: #000000;
+
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+    </style>
+    </head>
+
+<body>
+
+<header>
+  <div class="line-container">
+    <div class="line" style="background: blue"></div>
+    <a href="/home/left" class="hover-box" style="background: blue">Left Candidates</a>
+  </div>
+  <a href="/home"><h1>The Polar Corpus</h1></a>
+  <div class="line-container">
+    <div class="line" style="background: red"></div>
+    <a href="/home/right" class="hover-box" style="background: red">Right Candidates</a>
+  </div>
+</header>
+
+<h2 style="text-align: center;"><i>Politics isn't always black and white... but the grey's all here</i></h2>
+
+<div class="main">
+<div style="display: flex; align-items: flex-start;">
+  <div class="rectangle">
+    <h2 style="text-align: center">Featured Candidate</h2>
+    <h2 style="text-align: center">{{ featured_candidate }}</h2>
+
+  <div style="display: flex; justify-content: space-between; width: 100%;">
+  <h3>Political Affiliation: {{ politicalparty }}</h3>
+  <div style="display: flex; gap: 1rem;">
+    <h3>User Rating: {{ userrating }}</h3>
+    <h3>Polar Rating: {{ polarrating }}</h3>
+  </div>
+  </div>
+
+
+    <h3>Background: {{ background }}</h3>
+    <h3>Political Interests:</h3>
+    <h3>{{ politicalinterests }}</h3>
+
+    <h3>Consensus: {{ consensus }}</h3>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 24px; margin-left: 20px;">
+    <div class="side-container">
+      <p><b>News</b></p>
+      <div style="display: flex; margin-left: -1px; ">
+        <ul>
+          {% for article in articles %}
+            <li style="margin-bottom: 10px;">
+              <a href="{{ article.link }}" target="_blank">{{ article.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="side-container">
+      <p><b>State of the World</b></p>
+      <p>Political Meter</p>
+      <p>Heavy Partisanship: Aggression and tension is rising fast among voters and politicians.</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+</div>
+</body>
+
+</html>
