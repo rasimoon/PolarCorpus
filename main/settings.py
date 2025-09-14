@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-q4tsds)_r48kk50#7t7811t2k987z&a6&&6)$4ig861v*+7i1n
 DEBUG = True
 
 ALLOWED_HOSTS = ['polarcorpus.onrender.com', 
-                 'polarcorpus.xyz']
+                 'polarcorpus.xyz',
+                 'www.polarcorpus.xyz',]
 
 
 # Application definition
