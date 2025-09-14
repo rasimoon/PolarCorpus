@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 from pathlib import Path
 import os 
-import dj_database_url
+import urllib.parse as urlparse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -75,11 +75,20 @@ WSGI_APPLICATION = 'main.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(default=os.environ.get("DATABASE_URL"))
-    
-}
 
+urlparse.uses_netloc.append("postgres")
+db_url = urlparse.urlparse(os.environ["DATABASE_URL"])
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": db_url.path[1:],
+        "USER": db_url.username,
+        "PASSWORD": db_url.password,
+        "HOST": db_url.hostname,
+        "PORT": db_url.port,
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
